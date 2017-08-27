@@ -9,8 +9,12 @@
 /* Begin PBXBuildFile section */
 		09D0F9A270E5F0B030E4B5B3 /* Pods_DesafioAppProvaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12BB6961ED969E1E950F5D1F /* Pods_DesafioAppProvaTests.framework */; };
 		5D0CF22BED6642792CAD1E73 /* Pods_DesafioAppProva.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 968C23BDF7266D880D11618A /* Pods_DesafioAppProva.framework */; };
+		D9245D8B1F5354CC0093F0ED /* PullRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9245D8A1F5354CC0093F0ED /* PullRequest.swift */; };
+		D927B4EA1F506DF000F8D2FE /* GitHubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D927B4E91F506DF000F8D2FE /* GitHubService.swift */; };
+		D927B4EE1F50821000F8D2FE /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D927B4ED1F50821000F8D2FE /* SearchResult.swift */; };
+		D95536721F50896B0020E905 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95536711F50896B0020E905 /* Repository.swift */; };
+		D95536741F508A450020E905 /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95536731F508A450020E905 /* Owner.swift */; };
 		D998D74A1F50661400E87897 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998D7491F50661400E87897 /* AppDelegate.swift */; };
-		D998D74C1F50661400E87897 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998D74B1F50661400E87897 /* ViewController.swift */; };
 		D998D74F1F50661400E87897 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D998D74D1F50661400E87897 /* Main.storyboard */; };
 		D998D7511F50661400E87897 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D998D7501F50661400E87897 /* Assets.xcassets */; };
 		D998D7541F50661400E87897 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D998D7521F50661400E87897 /* LaunchScreen.storyboard */; };
@@ -34,9 +38,13 @@
 		968C23BDF7266D880D11618A /* Pods_DesafioAppProva.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DesafioAppProva.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C63433527DB69BFFB9E9FDD2 /* Pods-DesafioAppProva.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DesafioAppProva.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DesafioAppProva/Pods-DesafioAppProva.debug.xcconfig"; sourceTree = "<group>"; };
 		C882E69CC281B58B1AC821AC /* Pods-DesafioAppProvaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DesafioAppProvaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DesafioAppProvaTests/Pods-DesafioAppProvaTests.release.xcconfig"; sourceTree = "<group>"; };
+		D9245D8A1F5354CC0093F0ED /* PullRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullRequest.swift; sourceTree = "<group>"; };
+		D927B4E91F506DF000F8D2FE /* GitHubService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubService.swift; sourceTree = "<group>"; };
+		D927B4ED1F50821000F8D2FE /* SearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		D95536711F50896B0020E905 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		D95536731F508A450020E905 /* Owner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
 		D998D7461F50661400E87897 /* DesafioAppProva.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesafioAppProva.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D998D7491F50661400E87897 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D998D74B1F50661400E87897 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D998D74E1F50661400E87897 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D998D7501F50661400E87897 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D998D7531F50661400E87897 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -86,6 +94,32 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D927B4E81F506DC400F8D2FE /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				D927B4E91F506DF000F8D2FE /* GitHubService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		D927B4EB1F506E0600F8D2FE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		D927B4EC1F506F5200F8D2FE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D927B4ED1F50821000F8D2FE /* SearchResult.swift */,
+				D95536711F50896B0020E905 /* Repository.swift */,
+				D95536731F508A450020E905 /* Owner.swift */,
+				D9245D8A1F5354CC0093F0ED /* PullRequest.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		D998D73D1F50661400E87897 = {
 			isa = PBXGroup;
 			children = (
@@ -109,8 +143,10 @@
 		D998D7481F50661400E87897 /* DesafioAppProva */ = {
 			isa = PBXGroup;
 			children = (
+				D927B4EC1F506F5200F8D2FE /* Models */,
+				D927B4EB1F506E0600F8D2FE /* Controllers */,
+				D927B4E81F506DC400F8D2FE /* Service */,
 				D998D7491F50661400E87897 /* AppDelegate.swift */,
-				D998D74B1F50661400E87897 /* ViewController.swift */,
 				D998D74D1F50661400E87897 /* Main.storyboard */,
 				D998D7501F50661400E87897 /* Assets.xcassets */,
 				D998D7521F50661400E87897 /* LaunchScreen.storyboard */,
@@ -330,8 +366,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D998D74C1F50661400E87897 /* ViewController.swift in Sources */,
+				D9245D8B1F5354CC0093F0ED /* PullRequest.swift in Sources */,
+				D927B4EA1F506DF000F8D2FE /* GitHubService.swift in Sources */,
+				D927B4EE1F50821000F8D2FE /* SearchResult.swift in Sources */,
 				D998D74A1F50661400E87897 /* AppDelegate.swift in Sources */,
+				D95536741F508A450020E905 /* Owner.swift in Sources */,
+				D95536721F50896B0020E905 /* Repository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,6 +581,7 @@
 				D998D7651F50661400E87897 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D998D7661F50661400E87897 /* Build configuration list for PBXNativeTarget "DesafioAppProvaTests" */ = {
 			isa = XCConfigurationList;
@@ -549,6 +590,7 @@
 				D998D7681F50661400E87897 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
