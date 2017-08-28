@@ -15,6 +15,8 @@ class PullRequest {
     var title: String?
     var body: String?
     var htmlUrl: String?
+    var createdAt: String?
+    var state: String?
     var user: Owner?
     
     init(json: JSON) {
@@ -22,6 +24,8 @@ class PullRequest {
         self.title = json["title"].string
         self.body = json["body"].string
         self.htmlUrl = json["html_url"].string
+        self.createdAt = json["created_at"].string
+        self.state = json["state"].string
         self.user = Owner(json: json["user"])
         
     }
