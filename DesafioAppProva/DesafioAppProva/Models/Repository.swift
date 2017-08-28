@@ -26,5 +26,7 @@ class Repository {
         self.forksCount = json["forks_count"].int
         self.owner = Owner(json: json["owner"])
         self.stargazersCount = json["stargazers_count"].int
+        self.description = json["description"].string
+        self.htmlUrl = json["html_url"].string
     }
 }
