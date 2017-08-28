@@ -14,12 +14,6 @@ let kUrlBase = "https://api.github.com/"
 
 class GitHubService {
     
-    static let sharedInstance = GitHubService()
-    
-    private init() {
-        // Private initialization to ensure just one instance is created.
-    }
-    
     // "https://api.github.com/search/repositories?q=language:Java&sort=stars&page=1" Url de exemplo para o primeiro metodo
     class func getRepositores(page: String, completion: @escaping (_ data: SearchResult?, _ error: NSError?)-> ()) {
         Alamofire.request(kUrlBase + "search/repositories?q=language:Java&sort=stars&page=\(page)", method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { (dataResponse) in
