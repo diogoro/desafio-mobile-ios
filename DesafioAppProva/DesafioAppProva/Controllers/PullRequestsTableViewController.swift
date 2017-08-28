@@ -12,6 +12,8 @@ class PullRequestsTableViewController: UITableViewController {
 
     var repositoryName:String!
     var pullRequestsList: [PullRequest] = []
+    var opened = 0
+    var closed = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,10 +34,21 @@ class PullRequestsTableViewController: UITableViewController {
                 return
             }
             self.pullRequestsList.append(contentsOf: pullsList)
+            self.calcOpenedClose()
             self.tableView.reloadData()
         }
     }
 
+    func calcOpenedClose() {
+        for pull in pullRequestsList {
+            if pull.state == "open" {
+                opened = opened + 1
+            } else if pull.state == "closed" {
+                closed = closed + 1
+            }
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -77,5 +90,17 @@ class PullRequestsTableViewController: UITableViewController {
                 UIApplication.shared.openURL(pullHtmlUrl)
             }
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerCell = tableView.dequeueReusableCell(withIdentifier: "headerCell") as! PullRequestHeaderTableViewCell
+        
+        headerCell.setValues(opened: self.opened, closed: self.closed)
+        
+        return headerCell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return CGFloat(30)
     }
 }
