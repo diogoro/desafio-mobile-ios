@@ -11,26 +11,29 @@ import XCTest
 
 class DesafioAppProvaTests: XCTestCase {
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
     
     func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+        GitHubService.getRepositores(page: "1") { (result, error) in
+             XCTAssertNil(error)
         }
     }
+    
+    func testFinalListSearch() {
+        GitHubService.getRepositores(page: "35") { (result, error) in
+            XCTAssertEqual(String(describing: error?.userInfo["MESSAGE_API_ERROR"]), "Only the first 1000 search results are available")
+            XCTAssertEqual(String(describing: error?.userInfo["URL_API_DOCUMENTATION"]), "https://developer.github.com/v3/search/")
+            XCTAssertNil(result)
+        }
+    }
+    
+    func testPullResquestNoRepository() {
+        GitHubService.getPullsRequest(repository: "diogoro/Teste") { (pulls, error) in
+            XCTAssertEqual(String(describing: error?.userInfo["MESSAGE_API_ERROR"]), "Not Found")
+            XCTAssertEqual(String(describing: error?.userInfo["URL_API_DOCUMENTATION"]), "https://developer.github.com/v3/search/")
+            XCTAssertNil(pulls)
+        }
+    }
+    
+    
     
 }
