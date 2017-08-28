@@ -37,9 +37,9 @@ class GitHubService {
 
     }
     
-    // "https://api.github.com/repos/ReactiveX/RxJava/pulls" Url de exemplo para o segundo metodo
+    // "GET https://api.github.com/repos/ReactiveX/RxJava/pulls?state=all" Url de exemplo para o segundo metodo
     class func getPullsRequest(repository: String, completion: @escaping (_ pulls: [PullRequest]?, _ error: NSError?)->()) {
-        Alamofire.request(kUrlBase + "repos/\(repository)/pulls", method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { (dataResponse) in
+        Alamofire.request(kUrlBase + "repos/\(repository)/pulls?state=all", method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { (dataResponse) in
             guard let data = dataResponse.data, dataResponse.response?.statusCode == 200 else {
                 if dataResponse.response?.statusCode == 204 {
                     completion(nil,nil)
