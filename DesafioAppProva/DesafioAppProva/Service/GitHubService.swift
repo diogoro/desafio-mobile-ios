@@ -21,7 +21,7 @@ class GitHubService {
             guard let data = dataResponse.data, dataResponse.response?.statusCode == 200 else {
                 if dataResponse.response?.statusCode == 204 {
                     completion(nil,nil)
-                } else if dataResponse.response?.statusCode != 204 && dataResponse.response?.statusCode != 200{
+                } else if dataResponse.response?.statusCode != 204 && dataResponse.response?.statusCode != 200 && dataResponse.error == nil {
                     let error = NSError(errorData: dataResponse.data)
                     completion(nil, error)
                 } else {
@@ -43,7 +43,7 @@ class GitHubService {
             guard let data = dataResponse.data, dataResponse.response?.statusCode == 200 else {
                 if dataResponse.response?.statusCode == 204 {
                     completion(nil,nil)
-                } else if dataResponse.response?.statusCode != 204 && dataResponse.response?.statusCode != 200{
+                } else if dataResponse.response?.statusCode != 204 && dataResponse.response?.statusCode != 200 && dataResponse.error == nil {
                     let error = NSError(errorData: dataResponse.data)
                     completion(nil, error)
                 } else {
