@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PKHUD
 
 class PullRequestsTableViewController: UITableViewController {
 
@@ -19,7 +20,10 @@ class PullRequestsTableViewController: UITableViewController {
         super.viewDidLoad()
 
         self.navigationItem.title = repositoryName
+        PKHUD.sharedHUD.contentView = PKHUDProgressView(title: "Carregando ...", subtitle: nil)
+        PKHUD.sharedHUD.show()
         GitHubService.getPullsRequest(repository: repositoryName) { (pulls, error) in
+            PKHUD.sharedHUD.hide()
             guard let pullsList = pulls else {
                 if let err = error {
                     var message = "Erro inesperado ao acessar a api do GitHub"
