@@ -18,6 +18,7 @@ class PullRequestsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.configureTableView()
 
         self.navigationItem.title = repositoryName
         PKHUD.sharedHUD.contentView = PKHUDProgressView(title: "Carregando ...", subtitle: nil)
@@ -41,6 +42,11 @@ class PullRequestsTableViewController: UITableViewController {
             self.calcOpenedClose()
             self.tableView.reloadData()
         }
+    }
+    
+    func configureTableView() {
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 60
     }
 
     func calcOpenedClose() {
@@ -67,17 +73,25 @@ class PullRequestsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return self.pullRequestsList.count
+        return self.pullRequestsList.count + 1
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "pullCell", for: indexPath) as! PullRequestTableViewCell
-        let pull = self.pullRequestsList[indexPath.row]
-        
-        cell.setValuesCell(pullRequest: pull)
-        
-        return cell
+        if indexPath.row == 0 {
+            let headerCell = tableView.dequeueReusableCell(withIdentifier: "headerCell", for: indexPath) as! PullRequestHeaderTableViewCell
+            
+            headerCell.setValues(opened: self.opened, closed: self.closed)
+            
+            return headerCell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "pullCell", for: indexPath) as! PullRequestTableViewCell
+            let pull = self.pullRequestsList[indexPath.row - 1]
+            
+            cell.setValuesCell(pullRequest: pull)
+            
+            return cell
+        }
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -96,15 +110,4 @@ class PullRequestsTableViewController: UITableViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerCell = tableView.dequeueReusableCell(withIdentifier: "headerCell") as! PullRequestHeaderTableViewCell
-        
-        headerCell.setValues(opened: self.opened, closed: self.closed)
-        
-        return headerCell
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return CGFloat(30)
-    }
 }
