@@ -24,7 +24,7 @@ class PullRequest {
         self.title = json["title"].string
         self.body = json["body"].string
         self.htmlUrl = json["html_url"].string
-        self.createdAt = json["created_at"].string
+        self.createdAt = json["created_at"].dateTimeISO8601
         self.state = json["state"].string
         self.user = Owner(json: json["user"])
         
