@@ -41,6 +41,10 @@ class SearchResultsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "repositoryCell", for: indexPath) as! RepositoryTableViewCell
 
+        if indexPath.row == self.repositoryList.count - 1 {
+            self.loadItens()
+        }
+        
         let repository = self.repositoryList[indexPath.row]
         cell.setValuesCell(repository: repository)
 
