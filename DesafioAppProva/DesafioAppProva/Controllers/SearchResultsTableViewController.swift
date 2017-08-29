@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PKHUD
 
 class SearchResultsTableViewController: UITableViewController {
 
@@ -55,10 +56,22 @@ class SearchResultsTableViewController: UITableViewController {
 
     func loadItens() {
         if !isFinishLoad {
+            PKHUD.sharedHUD.contentView = PKHUDProgressView(title: "Carregando ...", subtitle: nil)
+            PKHUD.sharedHUD.show()
             GitHubService.getRepositores(page: "\(self.page)") { (result, error) in
+                PKHUD.sharedHUD.hide()
                 guard let result = result else {
                     self.isFinishLoad = true
-                    // mandar mensagem de aviso
+                    if let err = error {
+                        var message = "Erro inesperado ao acessar a api do GitHub"
+                        if err.code == 990 {
+                            message = String(describing: err.userInfo["MESSAGE_API_ERROR"])
+                        } else if err.code == 999 {
+                            message = String(describing: err.userInfo["ERROR_INVALID_PARSING"])
+                        }
+                        let alert = Alert(title: "Erro", message: message)
+                        self.present(alert.getAlert(), animated: true, completion: nil)
+                    }
                     return
                 }
                 self.repositoryList.append(contentsOf: result.repositores)
