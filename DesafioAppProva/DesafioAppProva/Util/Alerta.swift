@@ -10,7 +10,7 @@ import UIKit
 
 class Alert {
     
-    let alert = UIAlertController()
+    let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.alert)
     
     init(title:String, message:String) {
         alert.title = title
